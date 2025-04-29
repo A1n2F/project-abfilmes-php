@@ -18,7 +18,7 @@
     <?php foreach($filmes as $filme): ?>
         <div class="border-2 border-gray-300 w-[280px] h-[360px] rounded-xl p-5 relative">
             <div class="absolute bottom-5">
-                <a href="/filme.php?id=<?=$filme['id']?>" class="text-xl text-gray-200 font-semibold hover:text-purple-600">
+                <a href="/filme?id=<?=$filme['id']?>" class="text-xl text-gray-200 font-semibold hover:text-purple-600">
                     <?=$filme['titulo']?>
                 </a>
                 <span class="flex gap-2">
