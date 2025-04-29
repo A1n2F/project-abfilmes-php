@@ -7,9 +7,46 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div>
-        Hello World
-    </div>
+<body class="bg-gray-900 text-gray-400">
+    <header class="border-b-1 border-b-gray-700">
+        <nav class="mx-auto px-10 flex items-center justify-between py-5">
+            <div>
+                <img src="./assets/logo.svg" alt="" />
+            </div>
+            <ul class="flex items-center gap-4">
+                <li><a href="/" class="flex gap-1 bg-gray-700 px-3 py-2 rounded-lg hover:text-purple-300">
+                    <img src="/assets/popcorn.svg" alt="">
+                    <span class="text-purple-400">Explorar</span>
+                </a></li>
+                <li><a href="/meus-filmes.php" class="flex gap-1 hover:text-purple-400">
+                    <img src="./assets/claquete.svg" alt="">
+                    <span>Meus Filmes</span>
+                </a></li>
+            </ul>
+
+            <ul>
+                <li><a href="/login.php" class="hover:text-purple-400">Fazer login</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="mx-auto max-w-screen-2xl mt-10">
+        <form class="flex items-center justify-between mb-10">
+            <span class="text-2xl text-white font-bold tracking-wide">Explorar</span>
+            <div>
+                <input 
+                    type="text" 
+                    placeholder="Pesquisar filme" 
+                    class="border-gray-700 w-[264px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none"
+                    name="pesquisar"
+                />
+                <button type="submit">Pesquisar</button>
+            </div>
+        </form>
+
+        <div>
+            lista final
+        </div>
+    </main>
 </body>
 </html>
