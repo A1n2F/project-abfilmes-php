@@ -11,7 +11,5 @@ $filtrado = array_filter($filmes, function($f) use($id) {
 
 $filme = array_pop($filtrado);
 
-view('filme', [
-    'filme' => $filme
-]);
+view('filme', [ 'filme' => $filme ]);
 ?>
