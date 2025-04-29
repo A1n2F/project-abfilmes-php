@@ -9,11 +9,12 @@ class DB {
     }
 
 
-    public function filmes() {
-        $query = $this->db->query("SELECT * FROM filmes");
+    public function filmes($pesquisa = null) {
+        $prepare = $this->db->prepare("SELECT * FROM filmes WHERE titulo LIKE :pesquisa");
+        $prepare->bindValue('pesquisa', "%$pesquisa%");
+        $prepare->execute();
 
-        $items = $query->fetchAll();
-        $retorno = [];
+        $items = $prepare->fetchAll();
 
         return array_map(fn($item) => Filme::make($item), $items);
         
@@ -28,7 +29,6 @@ class DB {
         $query = $this->db->query($sql);
 
         $items = $query->fetchAll();
-        $retorno = [];
 
         return array_map(fn($item) => Filme::make($item), $items)[0];
     }
