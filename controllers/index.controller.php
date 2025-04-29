@@ -1,7 +1,6 @@
 <?php
 
-$db = new DB();
-$filmes = $db->filmes();
+$filmes = (new DB)->filmes();
 
 
 view('index', [ 'filmes' => $filmes ]);

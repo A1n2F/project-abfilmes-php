@@ -2,11 +2,8 @@
 
 $id = $_REQUEST['id'];
 
-$filtrado = array_filter($filmes, function($f) use($id) {
-    return $f['id'] == $id;
-});
+$db = new DB;
+$filme = $db->filme($id);
 
-$filme = array_pop($filtrado);
-
-view('filme', [ 'filme' => $filme ]);
+view('filme', compact('filme'));
 ?>
