@@ -24,12 +24,12 @@
         <div>
             <h1 class="text-3xl text-gray-200 font-bold mb-6 text-center">Acesse sua conta</h1>
 
-            <form action="">
+            <form method="POST">
                 <div class="flex flex-col">
                     <label class="mb-1">Email</label>
                     <input 
                         type="email" 
-                        name="email" required
+                        name="email" 
                         placeholder="Email" 
                         class="border-gray-700 w-[360px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-4"
                     />
@@ -37,7 +37,7 @@
                     <label class="mb-1">Senha</label>
                     <input 
                         type="password" 
-                        name="senha" required
+                        name="senha" 
                         placeholder="Senha" 
                         class="border-gray-700 w-[360px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-6"
                     />
@@ -51,42 +51,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div>
-    <div class="border border-stone-500">
-        <form action="">
-            <div class="flex flex-col">
-                <label>Email</label>
-                <input 
-                    type="email" 
-                    name="email" required
-                    placeholder="Pesquisar filme" 
-                    class="border-gray-700 w-[264px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none"
-                />
-
-                <label>Senha</label>
-                <input 
-                    type="password" 
-                    name="senha" required
-                    placeholder="Pesquisar filme" 
-                    class="border-gray-700 w-[264px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none"
-                />
-            </div>
-
-            <button type="submit">Logar</button>
-        </form>
-    </div>
-</div> -->
