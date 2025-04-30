@@ -29,15 +29,15 @@
                     <label class="mb-1">Nome</label>
                     <input 
                         type="text" 
-                        name="nome" required
+                        name="nome" 
                         placeholder="Nome" 
                         class="border-gray-700 w-[360px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-4"
                     />
 
                     <label class="mb-1">Email</label>
                     <input 
-                        type="email" 
-                        name="email" required
+                        type="text" 
+                        name="email" 
                         placeholder="Email" 
                         class="border-gray-700 w-[360px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-4"
                     />
@@ -45,7 +45,7 @@
                     <label class="mb-1">Senha</label>
                     <input 
                         type="password" 
-                        name="senha" required
+                        name="senha" 
                         placeholder="Senha" 
                         class="border-gray-700 w-[360px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-6"
                     />
@@ -56,11 +56,25 @@
                     Criar
                 </button>
 
-                <?php if(strlen($mensagem) > 0): ?>
+                <?php if(isset($mensagem) && strlen($mensagem)): ?>
                     <div class="border-green-800 bg-green-900 text-green-400 px-4 py-1 rounded-xl border-2 mt-6 text-center">
                         <?=$mensagem?>
                     </div>
                 <?php endif; ?>
+
+                <?php if(isset($_SESSION['validacoes']) && sizeof($_SESSION['validacoes'])): ?>
+                    <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-xl border-2 mt-6 font-bold">
+                        <ul>
+                            <li>Erros abaixo:</li>
+
+                            <?php foreach($_SESSION['validacoes'] as $validacao): ?>
+                                <li><?=$validacao?></li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
             </form>
         </div>
     </div>
