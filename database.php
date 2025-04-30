@@ -8,23 +8,16 @@ class DB {
         $this->db = new PDO('sqlite:database.sqlite');
     }
 
+    public function query($query, $class = null, $params = []) {
+        $prepare = $this->db->prepare($query);
 
-    public function filmes($pesquisa = null) {
-        $prepare = $this->db->prepare("SELECT * FROM filmes WHERE titulo LIKE :pesquisa");
-        $prepare->bindValue(':pesquisa', "%$pesquisa%");
-        $prepare->setFetchMode(PDO::FETCH_CLASS, Filme::class);
-        $prepare->execute();
+        if($class) {
+            $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
+        }
 
-        return $prepare->fetchAll();
-    }
+        $prepare->execute($params);
 
-    public function filme($id) {
-        $prepare = $this->db->prepare("SELECT * FROM filmes WHERE id = :id");
-        $prepare->bindValue(':id', $id);
-        $prepare->setFetchMode(PDO::FETCH_CLASS, Filme::class);
-        $prepare->execute();
-
-        return $prepare->fetch();
+        return $prepare;
     }
 }
 

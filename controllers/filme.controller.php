@@ -2,8 +2,11 @@
 
 $id = $_REQUEST['id'];
 
-$db = new DB;
-$filme = $db->filme($id);
+$filme = (new DB)->query(
+    query: "SELECT * FROM filmes WHERE id = :id", 
+    class: Filme::class, 
+    params: ['id' => $_GET['id']])
+    ->fetch();
 
 view('filme', compact('filme'));
 ?>
