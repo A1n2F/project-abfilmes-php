@@ -1,7 +1,8 @@
 <?php
 
-$filmes = (new DB)->filmes($_REQUEST['pesquisar']);
+$pesquisar = $_REQUEST['pesquisar'] ?? '';
 
+$filmes = (new DB)->filmes($pesquisar);
 
 view('index', [ 'filmes' => $filmes ]);
 

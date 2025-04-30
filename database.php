@@ -11,26 +11,20 @@ class DB {
 
     public function filmes($pesquisa = null) {
         $prepare = $this->db->prepare("SELECT * FROM filmes WHERE titulo LIKE :pesquisa");
-        $prepare->bindValue('pesquisa', "%$pesquisa%");
+        $prepare->bindValue(':pesquisa', "%$pesquisa%");
+        $prepare->setFetchMode(PDO::FETCH_CLASS, Filme::class);
         $prepare->execute();
 
-        $items = $prepare->fetchAll();
-
-        return array_map(fn($item) => Filme::make($item), $items);
-        
+        return $prepare->fetchAll();
     }
 
     public function filme($id) {
+        $prepare = $this->db->prepare("SELECT * FROM filmes WHERE id = :id");
+        $prepare->bindValue(':id', $id);
+        $prepare->setFetchMode(PDO::FETCH_CLASS, Filme::class);
+        $prepare->execute();
 
-        $sql = "SELECT * FROM filmes";            
-        
-        $sql .= " WHERE id = " . $id;
-        
-        $query = $this->db->query($sql);
-
-        $items = $query->fetchAll();
-
-        return array_map(fn($item) => Filme::make($item), $items)[0];
+        return $prepare->fetch();
     }
 }
 

@@ -4,9 +4,9 @@
     <div>
         <input 
             type="text" 
+            name="pesquisar"
             placeholder="Pesquisar filme" 
             class="border-gray-700 w-[264px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none"
-            name="pesquisar"
         />
         <button type="submit">Pesquisar</button>
     </div>
