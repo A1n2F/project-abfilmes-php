@@ -7,11 +7,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $validacao = Validacao::validar([
         'nome' => ['required'],
         'email' => ['required', 'email'],
-        // 'senha' => ['required', 'min:8', 'max:15']
+        'senha' => ['required', 'min:8', 'max:15']
     ], $_POST);
 
     if($validacao->naoPassou()) {
-        $_SESSION['validacoes'] = $validacao->validacoes;
         header('location: /registrar');
         exit();
     }

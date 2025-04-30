@@ -10,8 +10,16 @@ class Validacao {
         foreach ($regras as $campo => $regrasDoCampo) {            
             foreach ($regrasDoCampo as $regra) {
                 $valorDoCampo = $dados[$campo];
-                
-                $validacao->$regra($campo, $valorDoCampo);
+
+                if(str_contains($regra, ':')) {
+                    $temp = explode(':', $regra);
+                    $regra = $temp[0];
+                    $regraAr = $temp[1];
+
+                    $validacao->$regra($regraAr, $campo, $valorDoCampo);
+                } else {
+                    $validacao->$regra($campo, $valorDoCampo);
+                }
             }
         }
 
@@ -20,17 +28,30 @@ class Validacao {
 
     private function required($campo, $valor) {
         if(strlen($valor) == 0) {
-            $this->validacoes [] = "O $campo é obrigatório.";
+            $this->validacoes [] = "$campo é obrigatório.";
         }
     }
 
     private function email($campo, $valor) {
         if (! filter_var($valor, FILTER_VALIDATE_EMAIL)) {
-            $this->validacoes [] = "O $campo é inválido.";
+            $this->validacoes [] = "$campo é inválido.";
+        }
+    }
+
+    private function min($min, $campo, $valor) {
+        if(strlen($valor) <= $min) {
+            $this->validacoes [] = "$campo precisa ter no mínimo de $min caracteres.";
+        }
+    }
+
+    private function max($max, $campo, $valor) {
+        if(strlen($valor) > $max) {
+            $this->validacoes [] = "$campo precisa ter no máximo de $max caracteres.";
         }
     }
 
     public function naoPassou() {
+        $_SESSION['validacoes'] = $this->validacoes;
         return sizeof($this->validacoes) > 0;
     }
 }
