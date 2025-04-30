@@ -24,7 +24,7 @@
         <div>
             <h1 class="text-3xl text-gray-200 font-bold mb-6 text-center">Crie sua conta</h1>
 
-            <form action="">
+            <form method="POST" action="/registrar">
                 <div class="flex flex-col">
                     <label class="mb-1">Nome</label>
                     <input 
@@ -55,6 +55,12 @@
                 hover:bg-purple-700 transition-colors cursor-pointer">
                     Criar
                 </button>
+
+                <?php if(strlen($mensagem) > 0): ?>
+                    <div class="border-green-800 bg-green-900 text-green-400 px-4 py-1 rounded-xl border-2 mt-6 text-center">
+                        <?=$mensagem?>
+                    </div>
+                <?php endif; ?>
             </form>
         </div>
     </div>
