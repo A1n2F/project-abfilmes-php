@@ -4,6 +4,8 @@ require 'functions.php';
 
 require 'models/Filme.php';
 
+$config = require 'config.php';
+
 require 'database.php';
 
 require 'routes.php';

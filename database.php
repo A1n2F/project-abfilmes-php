@@ -4,8 +4,10 @@ class DB {
 
     private $db;
 
-    public function __construct() {
-        $this->db = new PDO('sqlite:database.sqlite');
+    public function __construct($config) {
+        $connectionString = $config['driver']. ':'. $config['database'];
+
+        $this->db = new PDO($connectionString);
     }
 
     public function query($query, $class = null, $params = []) {
@@ -20,5 +22,7 @@ class DB {
         return $prepare;
     }
 }
+
+$database = new DB($config['database']);
 
 ?>

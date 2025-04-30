@@ -2,7 +2,7 @@
 
 $pesquisar = $_REQUEST['pesquisar'] ?? '';
 
-$filmes = (new DB)->query(
+$filmes = $database->query(
     query: "SELECT * FROM filmes WHERE titulo LIKE :filtro", 
     class: Filme::class, 
     params: ['filtro' => "%$pesquisar%"])
