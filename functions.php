@@ -8,6 +8,14 @@ function view($view, $data = []) {
     require "views/template/app.php";
 }
 
+function noView($view, $data = []) {
+    foreach($data as $key => $value) {
+        $$key = $value;
+    }
+
+    require "views/template/noApp.php";
+}
+
 function dd(...$dump) {
     echo "<pre>";
     var_dump($dump);
