@@ -1,10 +1,12 @@
 <?php
 
+require 'models/Filme.php';
+
+require 'models/Usuario.php';
+
 session_start();
 
 require 'functions.php';
-
-require 'models/Filme.php';
 
 $config = require 'config.php';
 
