@@ -7,8 +7,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $senha = $_POST['senha'];
 
     $validacao = Validacao::validar([
-        'nome' => ['required'],
         'email' => ['required', 'email'],
+        'senha' => ['required', 'min:8', 'max:15'],
     ], $_POST);
 
     if($validacao->naoPassou('login')) {

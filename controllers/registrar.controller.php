@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $validacao = Validacao::validar([
         'nome' => ['required'],
-        'email' => ['required', 'email'],
+        'email' => ['required', 'email', 'unique:usuarios'],
         'senha' => ['required', 'min:8', 'max:15']
     ], $_POST);
 
@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     //     noView('registrar');
     //     exit();
     // }
-    
+
     $database->query(
         query: "INSERT INTO usuarios ( nome, email, senha ) VALUES ( :nome, :email, :senha )",
         params: [
