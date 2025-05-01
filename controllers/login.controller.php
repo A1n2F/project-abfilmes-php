@@ -1,8 +1,20 @@
 <?php
 
+require 'Validacao.php';
+
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
+
+    $validacao = Validacao::validar([
+        'nome' => ['required'],
+        'email' => ['required', 'email'],
+    ], $_POST);
+
+    if($validacao->naoPassou('login')) {
+        header('location: /login');
+        exit();
+    }
 
     $usuario = $database->query(
         query: "SELECT * FROM usuarios WHERE email = :email AND senha = :senha",
@@ -12,7 +24,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if($usuario) {
         $_SESSION['auth'] = $usuario;
-        $_SESSION['mensagem'] = 'Seja bem vindo '. $usuario->nome . '!';
+        
+        flash()->push('mensagem', 'Seja bem vindo '. $usuario->nome . '!');
         header('location: /');
         exit();
     }

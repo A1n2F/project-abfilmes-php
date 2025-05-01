@@ -39,6 +39,12 @@
         </div>
     </header>
 
+    <?php if($mensagem = flash()->get('mensagem')): ?>
+        <div class="border-green-800 bg-green-900 text-green-400 px-4 py-1 rounded-xl border-2 mt-6 text-center">
+            <?=$mensagem?>
+        </div>
+    <?php endif; ?>
+
     <main class="mx-auto max-w-screen-2xl mt-10">
         <?php require "views/{$view}.view.php"; ?>
     </main>

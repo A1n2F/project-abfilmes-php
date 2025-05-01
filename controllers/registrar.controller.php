@@ -10,16 +10,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         'senha' => ['required', 'min:8', 'max:15']
     ], $_POST);
 
-    if($validacao->naoPassou()) {
+    if($validacao->naoPassou('registrar')) {
         header('location: /registrar');
         exit();
     }
 
-    if(sizeof($validacoes) > 0) {
-        $_SESSION['validacoes'] = $validacoes;
-        noView('registrar');
-        exit();
-    }
+    // if(sizeof($validacoes) > 0) {
+    //     $_SESSION['validacoes'] = $validacoes;
+    //     noView('registrar');
+    //     exit();
+    // }
     
     $database->query(
         query: "INSERT INTO usuarios ( nome, email, senha ) VALUES ( :nome, :email, :senha )",
@@ -30,13 +30,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]
     );
 
-    header('location: /registrar?mensagem=Registrado com sucesso!');
+    flash()->push('mensagem', 'Registrado com sucesso!');
+
+    header('location: /registrar');
     exit();
 }
 
-$mensagem = $_REQUEST['mensagem'] ?? '';
-
-
-noView('registrar', compact('mensagem'));
+noView('registrar');
 
 ?>

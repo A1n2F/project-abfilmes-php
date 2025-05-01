@@ -47,6 +47,20 @@
                 hover:bg-purple-700 transition-colors cursor-pointer">
                     Entrar
                 </button>
+
+                <?php if($validacoes = flash()->get('validacoes_login')): ?>
+                    <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-xl border-2 mt-6 font-bold">
+                        <ul>
+                            <li>Erros abaixo:</li>
+
+                            <?php foreach($validacoes as $validacao): ?>
+                                <li><?=$validacao?></li>
+                            <?php endforeach; ?>
+
+                        </ul>
+                    </div>
+                <?php endif; ?>
+
             </form>
         </div>
     </div>

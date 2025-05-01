@@ -56,18 +56,18 @@
                     Criar
                 </button>
 
-                <?php if(isset($mensagem) && strlen($mensagem)): ?>
+                <?php if($mensagem = flash()->get('mensagem')): ?>
                     <div class="border-green-800 bg-green-900 text-green-400 px-4 py-1 rounded-xl border-2 mt-6 text-center">
                         <?=$mensagem?>
                     </div>
                 <?php endif; ?>
 
-                <?php if(isset($_SESSION['validacoes']) && sizeof($_SESSION['validacoes'])): ?>
+                <?php if($validacoes = flash()->get('validacoes_registrar')): ?>
                     <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-xl border-2 mt-6 font-bold">
                         <ul>
                             <li>Erros abaixo:</li>
 
-                            <?php foreach($_SESSION['validacoes'] as $validacao): ?>
+                            <?php foreach($validacoes as $validacao): ?>
                                 <li><?=$validacao?></li>
                             <?php endforeach; ?>
 
