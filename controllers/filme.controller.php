@@ -8,5 +8,11 @@ $filme = $database->query(
     params: ['id' => $_GET['id']])
     ->fetch();
 
-view('filme', compact('filme'));
+$avaliacoes = $database->query(
+    "SELECT * FROM avaliacoes WHERE filme_id = :id",
+    Avaliacao::class,
+    ['id' => $_GET['id']]
+)->fetchAll();
+
+view('filme', compact('filme', 'avaliacoes'));
 ?>
