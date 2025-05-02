@@ -25,9 +25,9 @@
             </ul>
 
             <ul>
-                <?php if(isset($_SESSION['auth'])): ?>
+                <?php if(auth()): ?>
                     <li class="flex items-center gap-2">
-                        <span>Oi, <?=$_SESSION['auth']->nome?></span>
+                        <span>Oi, <?=auth()->nome?></span>
                         <a href="/logout">
                             <img src="/assets/logout.svg" alt="" class="px-2 py-2 border rounded-lg hover:border-purple-500 transition-colors">
                         </a>
