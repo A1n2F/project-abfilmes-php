@@ -9,7 +9,7 @@
 ?>
 
 <div class="flex gap-30">
-    <div class="flex gap-10">
+    <div class="flex gap-10 w-[1100px]">
     <div class="border-2 border-gray-300 w-[380px] h-[490px] rounded-xl"></div>
 
     <div class="">
@@ -51,7 +51,7 @@
 
     <?php if(auth()): ?>
 
-    <div class="mt-12">
+    <div class="mt-12 max-w-[360px]">
         <h1 class="text-3xl text-gray-200 font-bold mb-6 text-center">Avaliar filme</h1>
 
         <form method="POST" action="/avaliacao-criar">
@@ -108,8 +108,18 @@
         <div class="col-span-3 gap-4 grid">
                 <?php foreach($avaliacoes as $avaliacao): ?>
                     <div class=" bg-gray-800 rounded-xl flex items-start justify-between px-10 py-4 h-[100px]">
-                        <div class="flex gap-50">    
-                            <h1 class="text-lg text-gray-200 font-bold"><?=auth()->nome?></h1>
+                        <div class="flex gap-50">
+                            <?php if(auth()): ?>
+                                <h1 class="text-lg text-gray-200 font-bold"><?=auth()->nome?></h1>
+                            <?php endif; ?>
+                            
+                            <?php if(!auth()): ?>
+                                <div class="flex flex-col text-center">
+                                    <h1 class="text-lg text-gray-200 font-bold">(Faça o login para ver usuário)</h1>
+                                    <a href="/login" class="hover:text-purple-500 transition-colors">Faça login ou Cadastre</a>
+                                </div>
+                            <?php endif; ?>
+
                             <?=$avaliacao->avaliacao?>
                         </div>
                         <div class="flex items-center bg-gray-800 px-3 py-1 rounded-lg gap-1">

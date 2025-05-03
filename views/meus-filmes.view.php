@@ -1,75 +1,35 @@
-<h1>Meus Filmes</h1>
+<div class="mb-6 flex items-center justify-between">
+    <h1 class="text-2xl text-gray-200 font-bold">Meus Filmes</h1>
 
-<div class="flex items-center justify-center gap-30">
-    <div class="border-2 border-gray-300 w-[380px] h-[490px] rounded-xl">imagem</div>
-    <div class="mt-12">
-        <h1 class="text-3xl text-gray-200 font-bold mb-6 text-center">Cadastre um novo filme!</h1>
-
-        <form method="POST" action="/filme-criar">
-            <div class="w-[640px]">
-                <div class="flex flex-col">
-                    <label class="mb-1">Título</label>
-                    <input 
-                        type="text" 
-                        name="titulo" 
-                        class="border-gray-700 border-2 rounded-md bg-gray-900 w-full px-2 py-2 focus:outline-none mb-4"
-                    />
-                </div>
-
-                <div class="flex gap-3">
-                    <div class="flex flex-col">
-                        <label class="mb-1">Gênero</label>
-                        <input
-                            type="text" 
-                            name="genero" 
-                            class="border-gray-700 w-[314px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-4"
-                        />
-                    </div>
-
-                    <div class="flex flex-col">
-                        <label class="mb-1">Ano</label>
-                        <input
-                            type="text" 
-                            name="ano" 
-                            class="border-gray-700 w-[314px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-4"
-                        />
-                    </div>
-                </div>
-
-                <div class="flex flex-col">
-                    <label class="mb-1">Descrição</label>
-                    <textarea
-                        type="text" 
-                        name="descricao" 
-                        class="border-gray-700 w-full h-[200px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none mb-4"
-                    ></textarea>
-                </div>
-                
-                <div class="flex justify-end gap-3">
-                    <button type="submit" class="bg-gray-700 text-white text-center w-20 py-3 rounded-xl 
-                    hover:bg-gray-800 transition-colors cursor-pointer">
-                        Cancelar
-                    </button>
-
-                    <button type="submit" class="bg-purple-600 text-white text-center w-20 py-3 rounded-xl 
-                    hover:bg-purple-700 transition-colors cursor-pointer">
-                        Salvar
-                    </button>
-                </div>
-
-                <?php if($validacoes = flash()->get('validacoes')): ?>
-                    <div class="border-red-800 bg-red-900 text-red-400 px-4 py-1 rounded-xl border-2 mt-6 font-bold">
-                        <ul>
-                            <li>Erros abaixo:</li>
-
-                            <?php foreach($validacoes as $validacao): ?>
-                                <li><?=$validacao?></li>
-                            <?php endforeach; ?>
-
-                        </ul>
-                    </div>
-                <?php endif; ?>
-            </div>
-        </form>
-    </div>
+    <a href="/novo-filme" type="submit" class="bg-purple-600 text-white text-center w-30 py-3 rounded-xl 
+    hover:bg-purple-700 transition-colors cursor-pointer">
+        + Novo
+    </a>
 </div>
+<section class="grid grid-cols-5 gap-6">
+            
+    <?php foreach($filmes as $filme): ?>
+        <div class="border-2 border-gray-300 w-[280px] h-[360px] rounded-xl p-5 relative">
+            <div class="absolute bottom-5">
+                <a href="/filme?id=<?=$filme->id?>" class="text-xl text-gray-200 font-semibold hover:text-purple-600">
+                    <?=$filme->titulo?>
+                </a>
+                <span class="flex gap-2">
+                    <p class="text-gray-300"><?=$filme->genero?></p>
+                    <p>.</p>
+                    <p class="text-gray-300"><?=$filme->ano?></p>
+                </span>
+            </div>
+
+            <div class="absolute right-2 top-2">
+                <span class="bg-black/70 rounded-full px-2.5 py-2 flex gap-1 items-center">
+                    <h1 class="text-xl text-white font-bold">4,5</h1>
+                    <p>/</p>
+                    <h1 class="text-sm">5</h1>
+                    <img src="/assets/star.svg" alt="">
+                </span>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+</section>

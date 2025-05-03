@@ -18,10 +18,12 @@
                     <img src="/assets/popcorn.svg" alt="">
                     <span class="text-purple-400">Explorar</span>
                 </a></li>
-                <li><a href="/meus-filmes" class="flex gap-1 hover:text-purple-400">
-                    <img src="./assets/claquete.svg" alt="">
-                    <span>Meus Filmes</span>
-                </a></li>
+                <?php if(auth()): ?>
+                    <li><a href="/meus-filmes" class="flex gap-1 hover:text-purple-400">
+                        <img src="./assets/claquete.svg" alt="">
+                        <span>Meus Filmes</span>
+                    </a></li>
+                <?php endif; ?>
             </ul>
 
             <ul>

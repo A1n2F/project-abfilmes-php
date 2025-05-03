@@ -1,5 +1,6 @@
 <?php
 
+
 if(!auth()) {
     header('location: /');
     exit();
@@ -12,6 +13,6 @@ $filmes = $database->query(
 );
 
 
-view('meus-filmes', compact('filmes'));
+view('novo-filme', compact('filmes'));
 
 ?>
