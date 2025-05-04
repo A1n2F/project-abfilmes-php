@@ -2,8 +2,6 @@
     <div class="relative">
         <img src="/assets/Login.png" alt="" class="h-screen w-full">
 
-        <img src="/assets/logo.svg" alt="" class="absolute left-10 top-10">
-
         <div class="flex flex-col gap-2 absolute left-10 bottom-10">
             <p class="text-xl font-bold">ab filmes</p>
             <h1 class="text-2xl font-bold text-gray-200 max-w-[346px]">O guia definitivo para os amantes do cinema</h1>

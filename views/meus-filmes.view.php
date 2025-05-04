@@ -8,11 +8,19 @@
         </a>
     </div>
     <section class="grid grid-cols-5 gap-6 mb-10">
-                
+        <?php if($filmes): ?>
         <?php foreach($filmes as $filme){
             require 'partials/_filme.php';
         }?>
-
+        <?php endif; ?>
     </section>
+
+    <div class="flex flex-col items-center gap-2">
+        <img src="/assets/claquete.svg" alt="" class="w-10 h-10">
+        <h1 class="text-xl w-[350px] text-center">
+        Nenhum filme registrado. Que tal começar cadastrando seu primeiro filme?
+        </h1>
+        <a href="/novo-filme" class="hover:text-purple-400">Cadastrar um novo filme</a>
+    </div>
 
 </div>

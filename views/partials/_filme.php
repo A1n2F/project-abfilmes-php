@@ -1,5 +1,5 @@
 <div class="border-2 border-gray-300 w-[280px] h-[360px] rounded-xl relative">
-    <div class="bg-gradient-to-t from-gray-900 w-[280px] h-[250px] absolute bottom-0 rounded-xl"></div>
+    <div class="bg-gradient-to-t from-gray-900 w-[280px] h-[280px] absolute -bottom-2 rounded-xl"></div>
     <div class="">
         <img src="<?=$filme->imagem?>" alt="" class="w-[280px] h-[360px] rounded-xl"/>
     </div>
