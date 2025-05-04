@@ -16,27 +16,35 @@ $titulo = $_POST['titulo'];
 $genero = $_POST['genero'];
 $descricao = $_POST['descricao'];
 $ano = $_POST['ano'];
+$imagem = $_POST['imagem'];
 
 $validacao = Validacao::validar([
     'titulo' => ['required'],
     'genero' => ['required'],
     'descricao' => ['required'],
     'ano' => ['required'],
+    'imagem' => ['required']
 ], $_POST);
 
 if($validacao->naoPassou()) {
-    header('location: /meus-filmes');
+    header('location: /novo-filme');
     exit();
 }
 
+$novoNome = md5(rand());
+$extensao = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
+$imagem = "images/$novoNome.$extensao";
+
+move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem);
+
 $database->query(
-    "INSERT INTO filmes (titulo, genero, descricao, ano, usuario_id) 
-    VALUES (:titulo, :genero, :descricao, :ano, :usuario_id)",
-    params: compact('titulo', 'genero', 'descricao', 'ano', 'usuario_id')
+    "INSERT INTO filmes (titulo, genero, descricao, ano, usuario_id, imagem) 
+    VALUES (:titulo, :genero, :descricao, :ano, :usuario_id, :imagem)",
+    params: compact('titulo', 'genero', 'descricao', 'ano', 'usuario_id', 'imagem')
 );
 
 flash()->push('mensagem', 'Filme cadastrado com sucesso!');
-header('location: /meus-filmes');
+header('location: /novo-filme');
 exit();
 
 

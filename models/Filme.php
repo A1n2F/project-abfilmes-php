@@ -9,20 +9,21 @@ class Filme {
     public $usuario_id;
     public $nota_avaliacao;
     public $count_avaliacoes;
+    public $imagem;
 
     public function query($where, $params){
         $database = new Database(config('database'));
         
         return $database->query(
             "SELECT 
-            l.id, l.titulo, l.genero, l.ano, l.descricao, 
+            l.id, l.titulo, l.genero, l.ano, l.descricao, l.imagem,
             ifnull(round(sum(a.nota) / 5.0), 0) as nota_avaliacao,
             ifnull(count(a.id), 0) as count_avaliacoes
             FROM
             filmes l
             LEFT JOIN avaliacoes a on a.filme_id = l.id
             WHERE $where
-            GROUP BY l.id, l.titulo, l.genero, l.ano, l.descricao",
+            GROUP BY l.id, l.titulo, l.genero, l.ano, l.descricao, l.imagem", 
             self::class,
             $params
         );

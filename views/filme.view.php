@@ -10,7 +10,11 @@
 
 <div class="flex gap-30">
     <div class="flex gap-10 w-[1100px]">
-    <div class="border-2 border-gray-300 w-[380px] h-[490px] rounded-xl"></div>
+    <div class="border-2 border-gray-300 w-[380px] h-[490px] rounded-xl">
+    <div class="">
+        <img src="<?=$filme->imagem?>" alt="" class="w-[380px] h-[490px] rounded-xl"/>
+    </div>
+    </div>
 
     <div class="">
         <a href="/" class="flex items-center gap-2">
