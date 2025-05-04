@@ -8,35 +8,36 @@
             placeholder="Pesquisar filme" 
             class="border-gray-700 w-[264px] border-2 rounded-md bg-gray-900 px-2 py-2 focus:outline-none"
         />
-        <button type="submit">Pesquisar</button>
+        <button type="submit" class="bg-gray-700 text-white text-center w-20 py-2.5 rounded-xl 
+        hover:bg-gray-800 transition-colors cursor-pointer">
+            Pesquisar
+        </button>
     </div>
     
 </form>
 
 <section class="grid grid-cols-5 gap-6">
-            
-    <?php foreach($filmes as $filme): ?>
-        <div class="border-2 border-gray-300 w-[280px] h-[360px] rounded-xl p-5 relative">
-            <div class="absolute bottom-5">
-                <a href="/filme?id=<?=$filme->id?>" class="text-xl text-gray-200 font-semibold hover:text-purple-600">
-                    <?=$filme->titulo?>
-                </a>
-                <span class="flex gap-2">
-                    <p class="text-gray-300"><?=$filme->genero?></p>
-                    <p>.</p>
-                    <p class="text-gray-300"><?=$filme->ano?></p>
-                </span>
-            </div>
 
-            <div class="absolute right-2 top-2">
-                <span class="bg-black/70 rounded-full px-2.5 py-2 flex gap-1 items-center">
-                    <h1 class="text-xl text-white font-bold">4,5</h1>
-                    <p>/</p>
-                    <h1 class="text-sm">5</h1>
-                    <img src="/assets/star.svg" alt="">
-                </span>
-            </div>
-        </div>
-    <?php endforeach; ?>
+    <?php foreach($filmes as $filme){
+        require 'partials/_filme.php';
+    } ?>
 
 </section>
+
+<div class="flex items-center justify-center">
+
+<?php if(!$filmes): ?>
+        <div class="flex flex-col items-center gap-2">
+            <img src="/assets/claquete.svg" alt="" class="w-10 h-10">
+            <h1 class="text-xl">
+                Nenhum filme encontrado com 
+                <span class="text-underline">"<?=$_GET['pesquisar']?>"</span>
+            </h1>
+
+            <h1 class="text-xl text-center">:(</h1>
+            
+            <h1>Que tal fazer outra busca?</h1>
+        </div>
+    <?php endif; ?>
+
+</div>

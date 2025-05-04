@@ -5,13 +5,9 @@ if(!auth()) {
     exit();
 }
 
-$filmes = $database->query(
-    "SELECT * FROM filmes WHERE usuario_id = :id",
-    Filme::class,
-    ['id' => auth()->id]
-);
+$filmes = Filme::meus(auth()->id);
 
 
-view('meus-filmes', compact('filmes'));
+noView('meus-filmes', compact('filmes'));
 
 ?>
