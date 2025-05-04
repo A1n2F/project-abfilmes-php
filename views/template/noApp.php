@@ -43,7 +43,7 @@
 </header>
 
     <main class="mx-auto">
-        <?php require "views/{$view}.view.php"; ?>
+        <?php require "../views/{$view}.view.php"; ?>
     </main>
 </body>
 </html>

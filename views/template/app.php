@@ -48,7 +48,7 @@
     <?php endif; ?>
 
     <main class="mx-auto max-w-screen-2xl mt-10">
-        <?php require "views/{$view}.view.php"; ?>
+        <?php require "../views/{$view}.view.php"; ?>
     </main>
 </body>
 </html>

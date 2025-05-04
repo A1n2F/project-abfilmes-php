@@ -16,7 +16,7 @@
     
 </form>
 
-<section class="grid grid-cols-5 gap-6">
+<section class="grid grid-cols-5 gap-6 mb-10">
 
     <?php foreach($filmes as $filme){
         require 'partials/_filme.php';

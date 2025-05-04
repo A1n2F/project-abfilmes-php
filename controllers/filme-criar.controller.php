@@ -1,6 +1,6 @@
 <?php
 
-require 'Validacao.php';
+require '../Validacao.php';
 
 if($_SERVER['REQUEST_METHOD'] != 'POST') {
     header('location: /meus-filmes');
@@ -16,14 +16,12 @@ $titulo = $_POST['titulo'];
 $genero = $_POST['genero'];
 $descricao = $_POST['descricao'];
 $ano = $_POST['ano'];
-$imagem = $_POST['imagem'];
 
 $validacao = Validacao::validar([
     'titulo' => ['required'],
     'genero' => ['required'],
     'descricao' => ['required'],
     'ano' => ['required'],
-    'imagem' => ['required']
 ], $_POST);
 
 if($validacao->naoPassou()) {
@@ -35,7 +33,7 @@ $novoNome = md5(rand());
 $extensao = pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION);
 $imagem = "images/$novoNome.$extensao";
 
-move_uploaded_file($_FILES['imagem']['tmp_name'], $imagem);
+move_uploaded_file($_FILES['imagem']['tmp_name'], __DIR__ . '/../public/' . $imagem);
 
 $database->query(
     "INSERT INTO filmes (titulo, genero, descricao, ano, usuario_id, imagem) 
